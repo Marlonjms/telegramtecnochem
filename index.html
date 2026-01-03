@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmação de Idade</title>
+
+<style>
+:root{
+  --accent:#00d4ff;
+  --bg:#05070c;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% -10%, #0b1f3a, #05070c 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* estrelas */
+body::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(2px 2px at 20% 30%, #ffffff40, transparent),
+    radial-gradient(2px 2px at 80% 60%, #00d4ff40, transparent),
+    radial-gradient(1.5px 1.5px at 50% 80%, #ffffff30, transparent);
+  animation:stars 30s linear infinite;
+}
+
+@keyframes stars{
+  from{transform:translateY(0);}
+  to{transform:translateY(-220px);}
+}
+
+/* card */
+.card{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:480px;
+  padding:48px 44px;
+  border-radius:26px;
+  background:rgba(255,255,255,0.07);
+  backdrop-filter:blur(22px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 50px 120px rgba(0,0,0,.75);
+  animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-14px);}
+}
+
+/* badge */
+.badge{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  margin:0 auto 26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#00d4ff,#00ffa3);
+  color:#000;
+  font-weight:700;
+  font-size:15px;
+  box-shadow:0 12px 45px rgba(0,212,255,.55);
+}
+
+h1{
+  text-align:center;
+  font-size:2rem;
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+p{
+  text-align:center;
+  font-size:1.1rem;
+  opacity:.8;
+  line-height:1.55;
+  margin-bottom:44px;
+}
+
+/* botões */
+.buttons{
+  display:flex;
+  gap:20px;
+}
+
+.button{
+  flex:1;
+  padding:18px;
+  font-size:1.05rem;
+  font-weight:600;
+  border-radius:18px;
+  border:none;
+  cursor:pointer;
+  transition:.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* SIM */
+.button.sim{
+  background:linear-gradient(135deg,#00d4ff,#00ffa3);
+  color:#000;
+  box-shadow:0 22px 55px rgba(0,212,255,.45);
+}
+
+.button.sim:hover{
+  transform:translateY(-4px);
+}
+
+/* NÃO */
+.button.nao{
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.35);
+}
+
+.button.nao:hover{
+  background:rgba(255,255,255,.1);
+  transform:translateY(-4px);
+}
+
+/* brilho */
+.button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.45),
+    transparent
+  );
+  transform:translateX(-130%);
+}
+
+.button:hover::after{
+  transform:translateX(130%);
+  transition:transform .9s ease;
+}
+
+/* mobile ajuste fino */
+@media(max-width:600px){
+  .card{
+    padding:42px 28px;
+  }
+  .buttons{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="badge">18+</div>
+
+  <h1>Você é maior de 18 anos?</h1>
+  <p>Este conteúdo é permitido apenas para maiores de idade.</p>
+
+  <div class="buttons">
+    <button class="button sim" onclick="redirectToTelegram()">Sim</button>
+    <button class="button nao" onclick="denyAccess()">Não</button>
+  </div>
+</div>
+
+<script>
+function redirectToTelegram(){
+  window.location.href="https://t.me/seu_link_do_telegram";
+}
+function denyAccess(){
+  alert("Acesso permitido apenas para maiores de 18 anos.");
+}
+</script>
+
+</body>
+</html>
